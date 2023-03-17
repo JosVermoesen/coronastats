@@ -34,7 +34,7 @@ Since 2022:
 ## Getting started for developers
 
 - [Install NodeJS](https://nodejs.org/). Hint: eventually install and use [nvm](https://medium.com/@Joachim8675309/installing-node-js-with-nvm-4dc469c977d9) for easy installing and/or switching between node versions
-- Clone this repository: `git clone https://github.com/JosVermoesen/ngb-corona`.
+- Clone this repository: `git clone https://github.com/JosVermoesen/coronastats`.
 - Run `npm install` inside the project root.
 - Run `ng serve` in a terminal from the project root.
 - Profit. :tada:
@@ -60,13 +60,17 @@ Since 2022:
 
 - install all packages in one commandline: `npm i bootstrap bootswatch jquery @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons bootstrap-icons ngx-bootstrap @ngx-translate/core @ngx-translate/http-loader`
 
-## file styles.css
+## file styles.scss
 
 For use of bootstrap, add into file styles.css:
 
 ```bash
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 ```
+
+ng generate module modules/home --route home --module app.module
+ng generate module modules/about --route about --module app.module
+ng generate module modules/corona --route corona --module app.module
 
 ## warnings for chart.js
 
@@ -109,7 +113,7 @@ Before building, set resolveJsonModule to 'true' :
 
 ## Good practice 2: Update and check Angular X as needed
 
-This app is on Angular 12. Update to latest Angular 12:
-`ng update @angular/cli@12 @angular/core@12`
+This app is on Angular 15. Update to latest Angular 15:
+`ng update @angular/cli@15 @angular/core@15`
 
 Follow the instructions eventualy for fixes
