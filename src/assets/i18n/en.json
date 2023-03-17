@@ -44,7 +44,7 @@
     "MainSub": "Simple single page application developed with Angular & i.a. bootstrap, fontawesome and ngx-translate.",
     "OpenSourceTitle": "Open Source",
     "OpenSourceSub": "On our github page you find the source code of this application for download and examining.",
-    "GithubUrl": "https://github.com/JosVermoesen/ngb-corona",
+    "GithubUrl": "https://github.com/JosVermoesen/coronastats",
     "GithubButton": "Source code on Github",
     "Image": "assets/images/about/about2.jfif"
   },

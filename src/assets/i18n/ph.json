@@ -44,7 +44,7 @@
     "MainSub": "Simpleng application ng solong pahina na binuo kasama ang Angular & i.a. bootstrap, fontawesome at ngx-translate.",
     "OpenSourceTitle": "Buksan ang Source Software",
     "OpenSourceSub": "Sa aming pahina ng github makikita mo ang source code ng application na ito para sa pag-download at pagsusuri.",
-    "GithubUrl": "https://github.com/JosVermoesen/ngb-corona",
+    "GithubUrl": "https://github.com/JosVermoesen/coronastats",
     "GithubButton": "Source code sa Github",
     "Image": "assets/images/about/about2.jfif"
   },
