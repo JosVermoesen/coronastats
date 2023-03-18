@@ -1,1 +1,242 @@
-<p>corona works!</p>
+<!-- CORONA SECTION -->
+<section id="corona" class="py-2">
+  <div class="container">
+    <div class="card card-body mb-3">
+      <div>
+        <tabset #staticTabs>
+          <tab
+            id="global"
+            heading="{{ 'CORONA.TabGlobal' | translate }}"
+            (selectTab)="onSelect($event)"
+          >
+            <div class="col-md-6">
+              <div class="card p-6">
+                <div class="card-body">
+                  <div class="form-group">
+                    <div *ngIf="apiWaiting">
+                      <fa-icon
+                        class="fa-spin fa-3x mb-2"
+                        [icon]="faSpinner"
+                      ></fa-icon>
+                      <h4>{{ "COMMON.MessageApiWaiting" | translate }}</h4>
+                    </div>
+                    <div *ngIf="apiError">
+                      <h4>{{ "COMMON.MessageApiError" | translate }}</h4>
+                    </div>
+                    <div class="py-3" *ngIf="coronaGlobalNumbers">
+                      <p>
+                        {{ "CORONA.WorldLabelLatestUpdate" | translate }}:<br />
+                        {{ globalLastUpdate }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelCases" | translate }}:
+                        {{ coronaGlobalNumbers.cases }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelTodayCases" | translate }}:
+                        {{ coronaGlobalNumbers.todayCases }}
+                      </p>
+
+                      <p>
+                        {{ "CORONA.WorldLabelDeaths" | translate }}:
+                        {{ coronaGlobalNumbers.deaths }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelTodayDeaths" | translate }}:
+                        {{ coronaGlobalNumbers.todayDeaths }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelRecovered" | translate }}:
+                        {{ coronaGlobalNumbers.recovered }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelActive" | translate }}:
+                        {{ coronaGlobalNumbers.active }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelCritical" | translate }}:
+                        {{ coronaGlobalNumbers.critical }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelCasesPerOneMillion" | translate }}:
+                        {{ coronaGlobalNumbers.casesPerOneMillion }}
+                      </p>
+                      <p>
+                        {{
+                          "CORONA.WorldLabelDeathsPerOneMillion" | translate
+                        }}:
+                        {{ coronaGlobalNumbers.deathsPerOneMillion }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelTests" | translate }}:
+                        {{ coronaGlobalNumbers.tests }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelTestsPerOneMillion" | translate }}:
+                        {{ coronaGlobalNumbers.testsPerOneMillion }}
+                      </p>
+                      <p>
+                        {{ "CORONA.WorldLabelAffectedCountries" | translate }}:
+                        {{ coronaGlobalNumbers.affectedCountries }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+
+          <tab
+            id="status"
+            heading="{{ selectedCountryName }} {{
+              'CORONA.TabCountryStatus' | translate
+            }} "
+            (selectTab)="onSelect($event )"
+          >
+            <div class="col-md-6">
+              <div class="card p-6">
+                <div class="card-body">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <!-- <select
+                        id="thisCountry"
+                        (change)="
+                          getCountryDetails($event.target.selectedIndex)
+                        "
+                        class="custom-select"
+                        aria-describedby="button-countrydetail"
+                        #thisCountry
+                      >
+                        <option *ngFor="let country of coronaCountries">
+                          {{ country.country }}
+                        </option>
+                      </select> -->
+                      <div
+                        *ngIf="!countryHistorical"
+                        class="input-group-append"
+                      >
+                        <button
+                          (click)="getHistory(selectedCountryName)"
+                          class="btn btn-primary"
+                          type="button"
+                          id="button-countrydetail"
+                        >
+                          {{ "CORONA.ButtonGetHistoryData" | translate }}
+                        </button>
+
+                        <button
+                          (click)="setDefaultCountry()"
+                          class="btn btn-success"
+                        >
+                          <fa-icon
+                            class="fa-spin fa-1x"
+                            [icon]="faPin"
+                          ></fa-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="py-3" *ngIf="coronaCountry">
+                    <p>
+                      {{ "CORONA.LabelCountryLatestUpdate" | translate }}:<br />
+                      {{ countryLastUpdate }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryTodayCases" | translate }}:
+                      {{ coronaCountry.todayCases }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryTodayDeaths" | translate }}:
+                      {{ coronaCountry.todayDeaths }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryTotalCases" | translate }}:
+                      {{ coronaCountry.cases }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryTotalDeaths" | translate }}:
+                      {{ coronaCountry.deaths }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryTotalRecovered" | translate }}:
+                      {{ coronaCountry.recovered }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryTotalActive" | translate }}:
+                      {{ coronaCountry.active }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryTotalCritical" | translate }}:
+                      {{ coronaCountry.critical }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryPerMillionCases" | translate }}:
+                      {{ coronaCountry.casesPerOneMillion }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryPerMillionDeaths" | translate }}:
+                      {{ coronaCountry.deathsPerOneMillion }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryTests" | translate }}:
+                      {{ coronaCountry.tests }}
+                    </p>
+                    <p>
+                      {{ "CORONA.LabelCountryPerMillionTests" | translate }}:
+                      {{ coronaCountry.testsPerOneMillion }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+
+          <!-- <tab
+            id="graph"
+            *ngIf="countryHistorical"
+            heading="{{ 'CORONA.TabGraphData' | translate }} {{
+              selectedCountryName
+            }}"
+            (selectTab)="onSelect($event)"
+          >
+            <div>
+              <div style="display: block">
+                <canvas
+                  baseChart
+                  [datasets]="coronaChartData"
+                  [labels]="coronaChartLabels"
+                  [options]="coronaChartOptions"
+                  [legend]="coronaChartLegend"
+                  [chartType]="coronaChartType"
+                >
+                </canvas>
+              </div>
+            </div>
+          </tab>
+
+          <tab
+            *ngIf="evalAvailable"
+            heading="{{ 'CORONA.TabGraphEvalData' | translate }} {{
+              selectedCountryName
+            }}"
+          >
+            <div>
+              <div style="display: block">
+                <canvas
+                  baseChart
+                  [datasets]="coronaEvalChartData"
+                  [labels]="coronaChartLabels"
+                  [options]="coronaChartOptions"
+                  [legend]="coronaChartLegend"
+                  [chartType]="coronaChartType"
+                >
+                </canvas>
+              </div>
+            </div>
+          </tab> -->
+        </tabset>
+      </div>
+    </div>
+  </div>
+</section>

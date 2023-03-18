@@ -22,7 +22,7 @@ import { SharedModule } from '../shared.module';
   declarations: [CoronaComponent],
   imports: [
     CommonModule,
-    CoronaRoutingModule,    
+    CoronaRoutingModule,
     SharedModule.forRoot(),
     TranslateModule.forChild({
       loader: {
@@ -35,5 +35,6 @@ import { SharedModule } from '../shared.module';
     TabsModule.forRoot(),
     NgChartsModule,
   ],
+  providers: [CoronaService],
 })
 export class CoronaModule {}
