@@ -19,6 +19,7 @@ const routes: Routes = [
       import('./modules/corona/corona.module').then((m) => m.CoronaModule),
   },
   { path: 'chart', component: MyLineChartComponent },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
