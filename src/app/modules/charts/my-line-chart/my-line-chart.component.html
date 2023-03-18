@@ -1,0 +1,65 @@
+<section id="chart" class="py-3">
+  <div class="container">
+    <div class="card card-body mb-3">
+      <canvas
+        baseChart
+        class="chart"
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend"
+        [type]="lineChartType"
+        [plugins]="lineChartPlugins"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"
+      >
+      </canvas>
+      <table>
+        <tr>
+          <th *ngFor="let label of lineChartData.labels">{{ label }}</th>
+        </tr>
+        <tr
+          *ngFor="let d of lineChartData.datasets; let i = index"
+          [class]="'line-' + i"
+        >
+          <td *ngFor="let label of lineChartData.labels; let j = index">
+            {{ d && d.data[j] }}
+          </td>
+        </tr>
+      </table>
+      <div>
+        <button
+          class="btn btn-primary btn-sm ms-1"
+          type="button"
+          color="primary"
+          (click)="randomize()"
+        >
+          Randomize
+        </button>
+        <button
+          class="btn btn-primary btn-sm ms-1"
+          type="button"
+          color="primary"
+          (click)="pushOne()"
+        >
+          Push
+        </button>
+        <button
+          class="btn btn-primary btn-sm ms-1"
+          type="button"
+          color="primary"
+          (click)="changeColor()"
+        >
+          Recolor
+        </button>
+        <button
+          class="btn btn-primary btn-sm ms-1"
+          type="button"
+          color="primary"
+          (click)="hideOne()"
+        >
+          Toggle Series B
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

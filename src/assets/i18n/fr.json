@@ -1,13 +1,12 @@
 {
   "NAVBAR": {
-    "NavTitle": "Covid API Voorbeeld",
+    "NavTitle": "Covid API met ng2-chart",
     "NavAbout": "Deze App",
+    "NavCovid": "Covid Cijfers",
+    "NavChart": "ng2-chart Demo",
     "NavSettings": "Instellingen",
     "LanguageModalTitle": "Taalkeuze:",
     "LanguageModalCloseBtnName": "Sluiten"
-  },
-  "FOOTER": {
-    "Title": "Corona Statistieken"
   },
   "COMMON": {
     "MessageApiWaiting": "Een ogenblik...",

@@ -22,12 +22,16 @@ import { LanguageComponent } from './global/navbar/language/language.component';
 import { FooterComponent } from './global/footer/footer.component';
 import { NavbarComponent } from './global/navbar/navbar.component';
 
+import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
+import { MyLineChartComponent } from './modules/charts/my-line-chart/my-line-chart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LanguageComponent,
     NavbarComponent,
     FooterComponent,
+    MyLineChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,11 +48,13 @@ import { NavbarComponent } from './global/navbar/navbar.component';
     ModalModule.forRoot(),
     FontAwesomeModule,
     AppRoutingModule,
+    NgChartsModule,
   ],
   providers: [
     LanguageService,
     BsModalRef,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: NgChartsConfiguration, useValue: { generateColors: false } },
   ],
   entryComponents: [LanguageComponent],
   bootstrap: [AppComponent],

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MyLineChartComponent } from './modules/charts/my-line-chart/my-line-chart.component';
 
 const routes: Routes = [
   {
@@ -17,11 +18,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/corona/corona.module').then((m) => m.CoronaModule),
   },
-  {
-    path: 'chart',
-    loadChildren: () =>
-      import('./modules/chart/chart.module').then((m) => m.ChartModule),
-  },
+  { path: 'chart', component: MyLineChartComponent },
 ];
 
 @NgModule({
