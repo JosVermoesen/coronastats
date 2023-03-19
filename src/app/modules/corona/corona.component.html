@@ -91,18 +91,16 @@
             heading="{{ selectedCountryName }} {{
               'CORONA.TabCountryStatus' | translate
             }} "
-            (selectTab)="onSelect($event )"
+            (selectTab)="onSelect($event)"
           >
             <div class="col-md-6">
               <div class="card p-6">
                 <div class="card-body">
                   <div class="form-group">
                     <div class="input-group">
-                      <!-- <select
+                      <select
                         id="thisCountry"
-                        (change)="
-                          getCountryDetails($event.target.selectedIndex)
-                        "
+                        (change)="setCountryDetailsWithTarget($event.target)"
                         class="custom-select"
                         aria-describedby="button-countrydetail"
                         #thisCountry
@@ -110,7 +108,7 @@
                         <option *ngFor="let country of coronaCountries">
                           {{ country.country }}
                         </option>
-                      </select> -->
+                      </select>
                       <div
                         *ngIf="!countryHistorical"
                         class="input-group-append"
