@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faSpinner, faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { TranslateService } from '@ngx-translate/core';
+import { ChartType } from 'chart.js';
 import { TabDirective } from 'ngx-bootstrap/tabs';
 import { environment } from 'src/environments/environment';
 import { CoronaService } from './corona.service';
@@ -45,8 +46,8 @@ export class CoronaComponent {
     responsive: true,
   };
 
-  coronaChartData: unknown;
-  coronaEvalChartData: unknown;
+  coronaChartData: any;
+  coronaEvalChartData: any;
 
   coronaGlobalNumbers: IWorld | null = null;
   coronaCountries!: ICountry[];
@@ -56,7 +57,7 @@ export class CoronaComponent {
   countryTimeline: ITimeline | null = null;
 
   public coronaChartLabels!: string[];
-  public coronaChartType = 'line';
+  public coronaChartType: ChartType = 'line';
   public coronaChartLegend = true;
 
   countryCases!: IDayData[];

@@ -192,7 +192,7 @@
             </div>
           </tab>
 
-          <!-- <tab
+          <tab
             id="graph"
             *ngIf="countryHistorical"
             heading="{{ 'CORONA.TabGraphData' | translate }} {{
@@ -204,11 +204,12 @@
               <div style="display: block">
                 <canvas
                   baseChart
-                  [datasets]="coronaChartData"
+                  class="chart"
+                  [data]="coronaChartData"
                   [labels]="coronaChartLabels"
                   [options]="coronaChartOptions"
                   [legend]="coronaChartLegend"
-                  [chartType]="coronaChartType"
+                  [type]="coronaChartType"
                 >
                 </canvas>
               </div>
@@ -225,16 +226,17 @@
               <div style="display: block">
                 <canvas
                   baseChart
-                  [datasets]="coronaEvalChartData"
+                  class="chart"
+                  [data]="coronaEvalChartData"
                   [labels]="coronaChartLabels"
                   [options]="coronaChartOptions"
                   [legend]="coronaChartLegend"
-                  [chartType]="coronaChartType"
+                  [type]="coronaChartType"
                 >
                 </canvas>
               </div>
             </div>
-          </tab> -->
+          </tab>
         </tabset>
       </div>
     </div>
