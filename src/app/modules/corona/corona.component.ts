@@ -52,7 +52,7 @@ export class CoronaComponent {
   coronaGlobalNumbers: IWorld | null = null;
   coronaCountries!: ICountry[];
   coronaCountry: ICountry | null = null;
-  countryHistorical!: ICountryHistorical;
+  countryHistorical: ICountryHistorical | null = null;
 
   countryTimeline: ITimeline | null = null;
 
@@ -192,53 +192,60 @@ export class CoronaComponent {
   }
 
   prepareGraph() {
-    this.countryCases = Object.values(this.countryHistorical.timeline.cases);
-    this.countryRecovered = Object.values(
-      this.countryHistorical.timeline.recovered
-    );
-    this.countryDeaths = Object.values(this.countryHistorical.timeline.deaths);
+    if (this.countryHistorical) {
+      this.countryCases = Object.values(this.countryHistorical.timeline.cases);
+      this.countryRecovered = Object.values(
+        this.countryHistorical.timeline.recovered
+      );
+      this.countryDeaths = Object.values(
+        this.countryHistorical.timeline.deaths
+      );
 
-    this.ts.get('CORONA.GraphLabel1').subscribe((res: string) => {
-      this.graphLabel1 = res;
-    });
-    this.ts.get('CORONA.GraphLabel2').subscribe((res: string) => {
-      this.graphLabel2 = res;
-    });
-    /* this.ts.get('CORONA.GraphLabel3').subscribe((res: string) => {
+      this.ts.get('CORONA.GraphLabel1').subscribe((res: string) => {
+        this.graphLabel1 = res;
+      });
+      this.ts.get('CORONA.GraphLabel2').subscribe((res: string) => {
+        this.graphLabel2 = res;
+      });
+      /* this.ts.get('CORONA.GraphLabel3').subscribe((res: string) => {
       this.graphLabel3 = res;
     }); */
 
-    this.coronaChartData = [
-      { data: this.countryCases, label: this.graphLabel1 },
-      { data: this.countryDeaths, label: this.graphLabel2 },
-      // { data: this.countryRecovered, label: this.graphLabel3 },
-    ];
-    this.coronaChartLabels = Object.keys(this.countryHistorical.timeline.cases);
+      this.coronaChartData = [
+        { data: this.countryCases, label: this.graphLabel1 },
+        { data: this.countryDeaths, label: this.graphLabel2 },
+        // { data: this.countryRecovered, label: this.graphLabel3 },
+      ];
+      this.coronaChartLabels = Object.keys(
+        this.countryHistorical.timeline.cases
+      );
 
-    console.log(this.countryDeaths[this.countryDeaths.length - 1]);
-    // console.log('Deathssum last 150 days till yesterday: ', this.countryDeaths);
+      console.log(this.countryDeaths[this.countryDeaths.length - 1]);
+      // console.log('Deathssum last 150 days till yesterday: ', this.countryDeaths);
+    }
   }
 
   prepareEvalGraph() {
-    let casesCounter = 0;
-    while (casesCounter < this.countryCases.length - 2) {
-      const valueCases1 = Number(this.countryCases[casesCounter]);
-      const valueCases2 = Number(this.countryCases[casesCounter + 1]);
-      const valueCases3 = valueCases2 - valueCases1;
-      this.countryCasesOnDay.push(valueCases3);
-      casesCounter++;
-    }
+    if (this.countryHistorical) {
+      let casesCounter = 0;
+      while (casesCounter < this.countryCases.length - 2) {
+        const valueCases1 = Number(this.countryCases[casesCounter]);
+        const valueCases2 = Number(this.countryCases[casesCounter + 1]);
+        const valueCases3 = valueCases2 - valueCases1;
+        this.countryCasesOnDay.push(valueCases3);
+        casesCounter++;
+      }
 
-    let deathCounter = 0;
-    while (deathCounter < this.countryDeaths.length - 2) {
-      const valueDeaths1 = Number(this.countryDeaths[deathCounter]);
-      const valueDeaths2 = Number(this.countryDeaths[deathCounter + 1]);
-      const valueDeaths3 = valueDeaths2 - valueDeaths1;
-      this.countryDeathsOnDay.push(valueDeaths3);
-      deathCounter++;
-    }
+      let deathCounter = 0;
+      while (deathCounter < this.countryDeaths.length - 2) {
+        const valueDeaths1 = Number(this.countryDeaths[deathCounter]);
+        const valueDeaths2 = Number(this.countryDeaths[deathCounter + 1]);
+        const valueDeaths3 = valueDeaths2 - valueDeaths1;
+        this.countryDeathsOnDay.push(valueDeaths3);
+        deathCounter++;
+      }
 
-    /* let recoveredCounter = 0;
+      /* let recoveredCounter = 0;
     while (recoveredCounter < this.countryRecovered.length - 2) {
       const valueRecovered1 = Number(this.countryRecovered[recoveredCounter]);
       const valueRecovered2 = Number(this.countryRecovered[recoveredCounter + 1]);
@@ -247,12 +254,15 @@ export class CoronaComponent {
       recoveredCounter++;
     } */
 
-    this.coronaEvalChartData = [
-      { data: this.countryCasesOnDay, label: this.graphLabel1 },
-      { data: this.countryDeathsOnDay, label: this.graphLabel2 },
-      // { data: this.countryRecoveredOnDay, label: this.graphLabel3 }
-    ];
-    this.coronaChartLabels = Object.keys(this.countryHistorical.timeline.cases);
-    this.evalAvailable = true;
+      this.coronaEvalChartData = [
+        { data: this.countryCasesOnDay, label: this.graphLabel1 },
+        { data: this.countryDeathsOnDay, label: this.graphLabel2 },
+        // { data: this.countryRecoveredOnDay, label: this.graphLabel3 }
+      ];
+      this.coronaChartLabels = Object.keys(
+        this.countryHistorical.timeline.cases
+      );
+      this.evalAvailable = true;
+    }
   }
 }

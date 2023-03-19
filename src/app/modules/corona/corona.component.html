@@ -9,8 +9,8 @@
             heading="{{ 'CORONA.TabGlobal' | translate }}"
             (selectTab)="onSelect($event)"
           >
-            <div class="col-md-6">
-              <div class="card p-6">
+            <div class="col-md-12">
+              <div class="card p-12">
                 <div class="card-body">
                   <div class="form-group">
                     <div *ngIf="apiWaiting">
@@ -93,8 +93,8 @@
             }} "
             (selectTab)="onSelect($event)"
           >
-            <div class="col-md-6">
-              <div class="card p-6">
+            <div class="col-md-12">
+              <div class="card p-12">
                 <div class="card-body">
                   <div class="form-group">
                     <div class="input-group">
@@ -109,13 +109,10 @@
                           {{ country.country }}
                         </option>
                       </select>
-                      <div
-                        *ngIf="!countryHistorical"
-                        class="input-group-append"
-                      >
+                      <div class="input-group-append">
                         <button
                           (click)="getHistory(selectedCountryName)"
-                          class="btn btn-primary"
+                          class="btn btn-primary ms-1"
                           type="button"
                           id="button-countrydetail"
                         >
@@ -124,7 +121,7 @@
 
                         <button
                           (click)="setDefaultCountry()"
-                          class="btn btn-success"
+                          class="btn btn-success ms-1"
                         >
                           <fa-icon
                             class="fa-spin fa-1x"
